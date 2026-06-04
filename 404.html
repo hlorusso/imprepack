@@ -56,6 +56,16 @@
   .saldo-card { background: var(--blue); border-radius: var(--radius); padding: 24px 22px 20px; margin-bottom: 14px; position: relative; overflow: hidden; }
   .saldo-card::before { content: ''; position: absolute; top: -50px; right: -50px; width: 200px; height: 200px; border-radius: 50%; background: rgba(255,255,255,0.07); pointer-events: none; }
   .saldo-card.warn { background: #FFD600; }
+  .saldo-card.warn .saldo-label,
+  .saldo-card.warn .saldo-number,
+  .saldo-card.warn .saldo-unit,
+  .saldo-card.warn .progress-meta,
+  .saldo-card.warn .reset-inline { color: rgba(0,0,0,0.75); }
+  .saldo-card.warn .progress-bg { background: rgba(0,0,0,0.15); }
+  .saldo-card.warn .progress-fill { background: #1a1a1a; }
+  .saldo-card.warn .reset-inline svg { stroke: rgba(0,0,0,0.6); }
+  .saldo-card.warn #badgeStatus { background: rgba(0,0,0,0.15); color: #1a1a1a; }
+  .saldo-card.warn #badgeStatus .dot { background: #1a1a1a; }
   .saldo-card.critical { background: #FF00AA; }
   .saldo-label { font-size: 11px; font-weight: 600; color: rgba(255,255,255,0.7); text-transform: uppercase; letter-spacing: 0.09em; margin-bottom: 6px; }
   .saldo-number { font-size: 72px; font-weight: 300; color: #fff; letter-spacing: -4px; line-height: 1; margin-bottom: 4px; }
