@@ -297,18 +297,18 @@ async function enterApp() {
     // Calcular consumos del mes
     const consumosMes = consumos.filter(c =>
       (c['Slug cliente'] || '').toLowerCase() === slug.toLowerCase() &&
-      (c['Mes\n(AAAA-MM)'] || c['Mes (AAAA-MM)'] || c['Mes'] || '').startsWith(mesActual)
+      (c['Mes (AAAA-MM)'] || '').startsWith(mesActual)
     );
 
-    const totalUsadas = consumosMes.reduce((sum, c) => sum + (parseFloat(c['Impresiones\ndescontadas'] || c['Impresiones descontadas'] || c['Impresiones'] || 0)), 0);
-    const packTotal = parseFloat(cliente['Impresiones\ndel pack'] || cliente['Impresiones del pack'] || cliente['Impresiones'] || 0);
+    const totalUsadas = consumosMes.reduce((sum, c) => sum + (parseFloat(c['Impresiones descontadas'] || 0)), 0);
+    const packTotal = parseFloat(cliente['Impresiones del pack'] || 0);
     const saldo = Math.max(0, packTotal - totalUsadas);
     const pct = packTotal > 0 ? saldo / packTotal : 0;
 
     // Adicionales del mes
     const adicionalesMes = adicionales.filter(a =>
       (a['Slug cliente'] || '').toLowerCase() === slug.toLowerCase() &&
-      (a['Mes\n(AAAA-MM)'] || a['Mes (AAAA-MM)'] || a['Mes'] || '').startsWith(mesActual)
+      (a['Mes (AAAA-MM)'] || '').startsWith(mesActual)
     );
 
     // Días para renovar
@@ -356,7 +356,7 @@ async function enterApp() {
     } else {
       consumosMes.sort((a, b) => (b['Fecha'] || '') > (a['Fecha'] || '') ? 1 : -1);
       histBody.innerHTML = consumosMes.map(c => {
-        const imp = parseFloat(c['Impresiones\ndescontadas'] || c['Impresiones descontadas'] || c['Impresiones'] || 0);
+        const imp = parseFloat(c['Impresiones descontadas'] || 0);
         const faz = c['Faz'] || '—';
         return `<div class="history-row">
           <span class="h-date">${formatFecha(c['Fecha'])}</span>
